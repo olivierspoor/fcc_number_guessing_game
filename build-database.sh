@@ -5,7 +5,7 @@ PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 CREATE_PLAYERS_TABLE=$($PSQL "
 CREATE TABLE players(
   player_id SERIAL PRIMARY KEY,
-  name VARCHAR(22) NOT NULL UNIQUE,
+  username VARCHAR(22) NOT NULL UNIQUE,
   games_played INT,
   best_game INT
 )")
