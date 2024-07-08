@@ -17,6 +17,23 @@ PLAYER_ID=$($PSQL "SELECT player_id FROM players WHERE name='$NAME'")
 if [[ -z $PLAYER_ID ]]
   then
   echo Welcome, $NAME! It looks like this is your first time here.
+
+  # insert into players table
+
+  #else
+  # registered player / welcome back
+
+#   echo Welcome back, $NAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses.
 fi
 
 SECRET_NUMBER=$((1 + $RANDOM % 1000))
+
+# while guess != secret_number
+  # too low
+  # too high
+
+# correct guess / game finished
+
+# insert into games table
+
+# update player table: games_played, best_game
