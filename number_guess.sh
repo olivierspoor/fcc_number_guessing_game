@@ -50,10 +50,10 @@ while [[ $GUESS != $SECRET_NUMBER ]]
     read GUESS
   else
 
-    if [[ $GUESS < $SECRET_NUMBER ]] 
+    if [[ $GUESS -lt $SECRET_NUMBER ]]
     then
       echo "It's higher than that, guess again:"
-    elif [[ $GUESS > $SECRET_NUMBER ]]
+    elif [[ $GUESS -gt $SECRET_NUMBER ]]
     then
       echo "It's lower than that, guess again:"
     fi
