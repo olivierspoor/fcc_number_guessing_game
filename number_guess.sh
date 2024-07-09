@@ -33,9 +33,13 @@ fi
 SECRET_NUMBER=$((1 + $RANDOM % 1000))
 
 echo $SECRET_NUMBER
+GUESSES=0
 
 echo "Guess the secret number between 1 and 1000:"
+((GUESSES=GUESSES+1))
 read GUESS
+
+
 
 while [[ $GUESS != $SECRET_NUMBER ]]
  do
@@ -54,11 +58,13 @@ while [[ $GUESS != $SECRET_NUMBER ]]
       echo "It's lower than that, guess again:"
     fi
 
+    ((GUESSES=GUESSES+1))
     read GUESS
   fi
 done
 
 echo Well done.
+echo $GUESSES
 
 # correct guess / game finished
 
