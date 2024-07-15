@@ -1,5 +1,9 @@
 #!/bin/bash
 
+PSQL="psql --username=freecodecamp --dbname=postgres -t --no-align -c"
+
+CREATE_DATABASE=$($PSQL "CREATE DATABASE number_guess")
+
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
 CREATE_PLAYERS_TABLE=$($PSQL "
