@@ -24,7 +24,7 @@ if [[ -z $PLAYER_ID ]]
 
   else
     # registered player / welcome back
-    REGISTERED_PLAYER_RESULT=$($PSQL "SELECT username, games_played, best_game FROM players WHERE username='$NAME'")
+    REGISTERED_PLAYER_RESULT=$($PSQL "SELECT username, games_played, best_game FROM players WHERE player_id='$PLAYER_ID'")
     echo $REGISTERED_PLAYER_RESULT | while IFS='|' read USERNAME GAMES_PLAYED BEST_GAME
       do
         echo Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses.
@@ -73,13 +73,9 @@ INSERT_GAME_RESULT=$($PSQL "INSERT INTO games(player_id, secret_number, number_o
 # echo $INSERT_GAME_RESULT
 
 # update player table: games_played
-NUMBER_OF_GAMES=$($PSQL "SELECT COUNT(game_id) FROM players LEFT JOIN games USING(player_id) WHERE player_id=1;")
+NUMBER_OF_GAMES=$($PSQL "SELECT COUNT(game_id) FROM players LEFT JOIN games USING(player_id) WHERE player_id=$PLAYER_ID;")
 UPDATE_PLAYER_GAMES=$($PSQL "UPDATE players SET games_played=$NUMBER_OF_GAMES WHERE player_id=$PLAYER_ID")
 
 # update player table: best_game
 BEST_GAME=$($PSQL "SELECT MIN(number_of_guesses) FROM games WHERE player_id=$PLAYER_ID")
 UPDATE_PLAYER_BEST=$($PSQL "UPDATE players SET best_game=$BEST_GAME WHERE player_id=$PLAYER_ID")
-
-# to do: bugs
-# - random users inserted
-# - random games inserted
